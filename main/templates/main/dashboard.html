@@ -21,12 +21,10 @@ Dashboard | Tution Tracker
     {% else %}
     <a href="{% url 'login' %}">Login</a>
     {% endif %}
-        
-        
     <p>{{ user.username | default:"Guest" }}</p>
             <div class="row row-cols-2 mt-5">
                 {% for class in class_list %}
-                    <div class="col"><a class="btn btn-dark w-100 mb-2" href="#">{{class}}</a></div>
+                    <div class="col"><a class="btn btn-dark w-100 mb-2" href="{% url 'studentslist' %}">{{class}}</a></div>
                 {% endfor %}
             </div>
             

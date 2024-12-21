@@ -35,7 +35,7 @@ class Student(models.Model):
     students.
     """
     name = models.CharField("Student's Name", max_length=255)
-    _class = models.ForeignKey(Class, on_delete=models.CASCADE)
+    class_name = models.ForeignKey(Class, on_delete=models.CASCADE)
     joining_date  = models.DateField("Date of Joining")
     contact_no = models.CharField("Parent's Contact No",max_length=10)
     school = models.ForeignKey(School,on_delete=models.CASCADE)

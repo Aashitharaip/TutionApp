@@ -12,8 +12,8 @@ class ClassAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ("name", "_class", "joining_date", "contact_no")
-    list_filter = ('_class',)
+    list_display = ("name", "class_name", "joining_date", "contact_no")
+    list_filter = ('class_name',)
 
 
 @admin.register(Fee)
