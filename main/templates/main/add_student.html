@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}
+    Tution Tracker | Add Student
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col"></div>
+        <div class="col-md-6">
+            <div class="card shadow p-4">
+                <h2 class="text-center mb-4">Add New Student</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label"><strong>Student Name</strong></label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="class_name" class="form-label"><strong>Class</strong></label>
+                        <select id="class_name" name="class_name" class="form-select" required>
+                            <option selected disabled>Choose a class</option>
+                            {% for cls in classes %}
+                            <option value="{{ cls.id }}">{{ cls.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="joining_date" class="form-label"><strong>Joining Date</strong></label>
+                        <input type="date" id="joining_date" name="joining_date" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact_no" class="form-label"><strong>Parent's Contact Number</strong></label>
+                        <input type="text" id="contact_no" name="contact_no" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="school" class="form-label"><strong>School</strong></label>
+                        <select id="school" name="school" class="form-select" required>
+                            <option selected disabled>Choose a school</option>
+                            {% for school in schools %}
+                            <option value="{{ school.id }}">{{ school.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-dark w-100">Add Student</button>
+                    </div>
+                </form>
+                
+                
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock content %}

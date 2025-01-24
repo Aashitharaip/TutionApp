@@ -49,7 +49,7 @@ class Fee(models.Model):
     """
     This table is used to enter the fees given by the student
     """
-    student = models.ForeignKey(Student,on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     date_of_payment = models.DateField("Date of Payment")
     amount_paid = models.IntegerField("Amount Paid")
     

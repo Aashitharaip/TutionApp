@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Students List | Tuition Tracker
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h1 class="text-center">Students List</h1>
+            <div class="row row-cols-2 mt-5">
+                {% for student in students_list %}
+                    <div class="col">
+                        <a class="btn btn-dark w-100 mb-2" href="/student_detail/{{student.id}}">{{student}}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<!-- Add Student Button -->
+<div class="position-absolute top-0 end-0 p-3">
+    <a class="btn btn-dark" href="/add_student">+ Add Student</a>
+</div>
+
+{% endblock content %}
