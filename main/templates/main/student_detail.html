@@ -33,36 +33,40 @@ Student Detail | Tution Tracker
 					</table>
 				</div>
           	</div>
-			<div class="card shadow p-4">
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="payment_date" class="form-label"><strong>Date of payment</strong></label>
-                        <input type="date" id="payment_date" name="payment_date" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="fees" class="form-label"><strong>Enter Fees</strong></label>
-                        <input type="number" id="fees" name="amount" class="form-control" required>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-dark w-100">Submit</button>
-                    </div>
-                </form>
+			<div class="card shadow my-3">
+                <div class="card-body">
+					<form method="POST">
+						{% csrf_token %}
+						<div class="mb-3">
+							<label for="payment_date" class="form-label"><strong>Date of payment</strong></label>
+							<input type="date" id="payment_date" name="payment_date" class="form-control" required>
+						</div>
+						<div class="mb-3">
+							<label for="fees" class="form-label"><strong>Enter Fees</strong></label>
+							<input type="number" id="fees" name="amount" class="form-control" required>
+						</div>
+						<div class="text-center">
+							<button type="submit" class="btn btn-dark w-100">Submit</button>
+						</div>
+					</form>
+				</div>
             </div>
 		</div>
     	<div class="col-md-6">       
       		<div class="card shadow">
 				<div class="card-body">
-					<h3>History of Fees</h3>
+					<h3>Fees history</h3>
 					<table class="table">
 						<tr>
 							<th>Date</th>
 							<th>Amount</th> 
 						</tr>
+						{% for fee in student.fees.all %}
 						<tr>
-							<td>12 Jan 2025</td>
-							<td>1,500</td>
+							<td>{{ fee.date_of_payment }}</td>
+							<td>₹ {{ fee.amount_paid }}</td>
 						</tr>
+						{% endfor %}
 					</table>
 				</div>
 			</div>

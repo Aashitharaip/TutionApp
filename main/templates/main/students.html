@@ -8,24 +8,80 @@ Students List | Tuition Tracker
 
 <div class="container">
     <div class="row mt-5">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <h1 class="text-center">Students List</h1>
-            <div class="row row-cols-2 mt-5">
-                {% for student in students_list %}
-                    <div class="col">
-                        <a class="btn btn-dark w-100 mb-2" href="/student_detail/{{student.id}}">{{student}}</a>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1 class="text-center">{{ class.name }} Students</h1>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark my-3" data-bs-toggle="modal" data-bs-target="#addStudent">
+                Add student
+            </button>
+
+            <div class="row row-cols-2">
+                {% for student in students %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="h4 my-2">{{ student.name }}</p>
+                            <p>{{ student.contact_no }}</p>
+                            <a class="btn btn-dark w-100 mb-2" href="{% url 'student_detail' student.id %}">View
+                                Student</a>
+
+                        </div>
                     </div>
+                </div>
+                {% empty %}
+                <div class="alert alert-warning">
+                    No students...
+                </div>
                 {% endfor %}
             </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
     </div>
 </div>
 
-<!-- Add Student Button -->
-<div class="position-absolute top-0 end-0 p-3">
-    <a class="btn btn-dark" href="/add_student">+ Add Student</a>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addStudent" tabindex="-1" aria-labelledby="addStudentLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addStudentLabel">Add Student</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label"><strong>Student Name</strong></label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="joining_date" class="form-label"><strong>Joining Date</strong></label>
+                        <input type="date" id="joining_date" name="joining_date" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact_no" class="form-label"><strong>Parent's Contact Number</strong></label>
+                        <input type="text" id="contact_no" name="contact_no" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="school" class="form-label"><strong>School</strong></label>
+                        <select id="school" name="school" class="form-select" required>
+                            <option selected disabled>Choose a school</option>
+                            {% for school in schools %}
+                            <option value="{{ school.id }}">{{ school.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <p class="my-3"><a href="{% url 'admin:main_school_add' %}">(+) Add school</a></p>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-dark ">Add Student</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}

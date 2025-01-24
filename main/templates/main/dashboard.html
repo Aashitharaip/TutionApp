@@ -23,7 +23,7 @@ Dashboard | Tution Tracker
             <div class="row row-cols-2 mt-5">
                 {% for class in classes %}
                     <div class="col">
-                        <a class="btn btn-dark w-100 mb-2" href="/studentslist/{{class.id}}">{{class}}</a>
+                        <a class="btn btn-dark w-100 mb-2" href="{% url 'students' class.id %}">{{class}}</a>
                     </div>
                 {% endfor %}
             </div>
